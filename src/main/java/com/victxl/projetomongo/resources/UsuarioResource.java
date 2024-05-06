@@ -1,6 +1,7 @@
 package com.victxl.projetomongo.resources;
 
 import com.victxl.projetomongo.domain.Usuario;
+import com.victxl.projetomongo.dto.UsuarioDTO;
 import com.victxl.projetomongo.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -18,11 +21,12 @@ public class UsuarioResource {
     private UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> findAll() {
+    public ResponseEntity<List<UsuarioDTO>> findAll() {
 
         List<Usuario> list = usuarioService.findAll();
+        List<UsuarioDTO> listDTO = list.stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
 
-        return ResponseEntity.ok().body(list);
+        return ResponseEntity.ok().body(listDTO);
     }
 
 }
