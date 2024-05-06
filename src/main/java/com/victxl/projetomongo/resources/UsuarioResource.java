@@ -1,5 +1,6 @@
 package com.victxl.projetomongo.resources;
 
+import com.victxl.projetomongo.domain.Post;
 import com.victxl.projetomongo.domain.Usuario;
 import com.victxl.projetomongo.dto.UsuarioDTO;
 import com.victxl.projetomongo.services.UsuarioService;
@@ -52,6 +53,12 @@ public class UsuarioResource {
         usuario.setId(id);
         usuario = usuarioService.update(usuario);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        Usuario usuario = usuarioService.findById(id);
+        return ResponseEntity.ok().body(usuario.getPosts());
     }
 
 
