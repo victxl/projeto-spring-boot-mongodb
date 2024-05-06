@@ -1,5 +1,6 @@
 package com.victxl.projetomongo.domain;
 
+import com.victxl.projetomongo.dto.AutorDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,12 +17,12 @@ public class Post implements Serializable {
     private String titulo;
     private String conteudo;
 
-    private Usuario autor;
+    private AutorDTO autor;
 
     public Post() {
     }
 
-    public Post(String id, Date data, String titulo, String conteudo, Usuario autor) {
+    public Post(String id, Date data, String titulo, String conteudo, AutorDTO autor) {
         this.id = id;
         this.data = data;
         this.titulo = titulo;
@@ -61,11 +62,11 @@ public class Post implements Serializable {
         this.conteudo = conteudo;
     }
 
-    public Usuario getAutor() {
+    public AutorDTO getAutor() {
         return autor;
     }
 
-    public void setAutor(Usuario autor) {
+    public void setAutor(AutorDTO autor) {
         this.autor = autor;
     }
 
