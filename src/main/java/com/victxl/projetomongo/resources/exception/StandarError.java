@@ -1,11 +1,12 @@
 package com.victxl.projetomongo.resources.exception;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 public class StandarError implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Long timestamp;
+    private Instant timestamp;
     private Integer status;
     private String error;
     private String message;
@@ -14,7 +15,7 @@ public class StandarError implements Serializable {
     public StandarError() {
     }
 
-    public StandarError(Long timestamp, Integer status, String error, String message, String path) {
+    public StandarError(Instant timestamp, Integer status, String error, String message, String path) {
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;
@@ -22,11 +23,11 @@ public class StandarError implements Serializable {
         this.path = path;
     }
 
-    public Long getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Long timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 
