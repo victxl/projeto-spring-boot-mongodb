@@ -3,6 +3,7 @@ package com.victxl.projetomongo.config;
 import com.victxl.projetomongo.domain.Post;
 import com.victxl.projetomongo.domain.Usuario;
 import com.victxl.projetomongo.dto.AutorDTO;
+import com.victxl.projetomongo.dto.ComentarioDTO;
 import com.victxl.projetomongo.repository.PostRepository;
 import com.victxl.projetomongo.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,12 @@ public class Instatiation implements CommandLineRunner {
         Post post2 = new Post(null,sdf.parse("23/03/2018"),"Bom dia","Acordei feliz hoje???",new AutorDTO(maria));
 
 
+        ComentarioDTO c1 = new ComentarioDTO("Boa viagem mano!",sdf.parse("21/03/2018"),new AutorDTO(alex));
+        ComentarioDTO c2 = new ComentarioDTO("Aproveite",sdf.parse("23/03/2018"),new AutorDTO(bob));
+        ComentarioDTO c3 = new ComentarioDTO("Tenha um otimo dia!",sdf.parse("21/03/2018"),new AutorDTO(alex));
+
+        post1.getComentarios().addAll(Arrays.asList(c1,c2));
+        post2.getComentarios().addAll(Arrays.asList(c3));
         postRepository.saveAll(Arrays.asList(post1, post2));
 
         maria.getPosts().addAll(Arrays.asList(post1, post2));
