@@ -8,6 +8,7 @@ import com.victxl.projetomongo.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -29,6 +30,11 @@ public class PostService {
 
     public List<Post> findByTitulo(String texto) {
         return postRepository.pesquisaTitulo(texto);
+    }
+
+    public List<Post> pesquisaCompleta(String texto, Date dataInicial, Date dataFinal) {
+        dataFinal = new Date(dataFinal.getTime()/ 24*60*60*1000);
+        return postRepository.pesquisaCompleta(texto, dataInicial, dataFinal);
     }
 
 
